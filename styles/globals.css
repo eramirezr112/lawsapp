@@ -24,3 +24,14 @@ a {
     background: black;
   }
 }
+
+.react-checkbox-tree  li{
+  display: block;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.icon-color {
+  color:#04B1FA;
+}

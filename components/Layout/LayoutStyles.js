@@ -4,7 +4,6 @@ export const LayoutStyles = styled.div`
   width: 100%;
   height: 100vh;
   background: #fdfdfd;
-  font-family: "Encode Sans Condensed", sans-serif;
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #212121;
@@ -14,7 +13,7 @@ export const LayoutStyles = styled.div`
     position: fixed;
     width: 100%;
     height: 70px;
-    background: #212121;
+    background: #233f78;
     color: #fff;
     justify-content: center;
     align-items: center;
@@ -26,23 +25,25 @@ export const LayoutStyles = styled.div`
     display: flex;
     height: 100%;
     width: 100%;
-    background-color: #00ff00;
+
     .content {
       display: flex;
       width: 100%;
-      background-color: #ff0000;
     }
 
     .column-left {
-      background: #0000ff;
       height: 100%;
-      width: 30%;
+      width: 25%;
+      background: #f5f5f5;
+      padding: 1rem;
+      overflow: auto;
     }
 
     .column-right {
-      background: #00ffff;
+      background: #fff;
       height: 100%;
-      width: 70%;
+      width: 75%;
+      padding: 1rem;
     }
   }
 
@@ -62,10 +63,11 @@ export const LayoutStyles = styled.div`
   }
 
   #nav-container {
-    position: fixed;
+    position: absolute;
     height: 100vh;
     width: 100%;
     pointer-events: none;
+    z-index: 1000;
   }
   #nav-container .bg {
     position: absolute;
@@ -108,7 +110,7 @@ export const LayoutStyles = styled.div`
     display: block;
     width: 100%;
     height: 3px;
-    background: #aaa;
+    background: #fff;
     transition: 0.3s;
   }
   .icon-bar + .icon-bar {
