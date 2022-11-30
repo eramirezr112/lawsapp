@@ -2,10 +2,11 @@ import React from "react";
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 
+/*
 const nodes = [
   {
-    value: "Documents",
-    label: "Documents",
+    value: "Leyes",
+    label: "Leyes",
     children: [
       {
         value: "Employee Evaluations.zip",
@@ -41,11 +42,13 @@ const nodes = [
     ],
   },
 ];
+*/
 
 class TreeComponent extends React.Component {
   state = {
     checked: [],
-    expanded: ["Documents"],
+    expanded: ["Leyes"],
+    treeData: [],
   };
 
   constructor(props) {
@@ -53,6 +56,7 @@ class TreeComponent extends React.Component {
 
     this.onCheck = this.onCheck.bind(this);
     this.onExpand = this.onExpand.bind(this);
+    this.state.treeData = props.nodes;
   }
 
   onCheck(checked) {
@@ -63,8 +67,12 @@ class TreeComponent extends React.Component {
     this.setState({ expanded });
   }
 
+  onTreeData(treeData) {
+    this.setState(treeData);
+  }
+
   render() {
-    const { checked, expanded } = this.state;
+    const { checked, expanded, treeData } = this.state;
 
     return (
       <CheckboxTree
@@ -89,7 +97,7 @@ class TreeComponent extends React.Component {
           leaf: <span className="rct-icon rct-icon-leaf" />,
         }}
         iconsClass="fa5"
-        nodes={nodes}
+        nodes={treeData}
         onCheck={this.onCheck}
         onExpand={this.onExpand}
       />

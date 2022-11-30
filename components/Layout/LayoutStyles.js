@@ -32,6 +32,7 @@ export const LayoutStyles = styled.div`
     }
 
     .column-left {
+      display: flex;
       height: 100%;
       width: 25%;
       background: #f5f5f5;
