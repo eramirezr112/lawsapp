@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { LayoutStyles } from "../components/Layout/LayoutStyles";
 import axios from "axios";
 import TreeComponent from "./components/Tree/TreeComponent";
@@ -9,6 +10,7 @@ import { SiteAPI } from "../config";
 
 export default function Laws({ leyNormasTipos }) {
   console.log(leyNormasTipos);
+  const [showContent, setShowContent] = useState(false);
 
   const isArray = Array.isArray(leyNormasTipos);
   console.log(isArray);
@@ -178,7 +180,7 @@ export default function Laws({ leyNormasTipos }) {
       <main>
         <div className="content">
           <div className="column-left">
-            <TreeComponent nodes={nodes} />
+            <TreeComponent nodes={nodes} setShowContent={setShowContent} />
             {/*
             <Tree
               content="Apple"
@@ -194,7 +196,39 @@ export default function Laws({ leyNormasTipos }) {
             </Tree>
             */}
           </div>
-          <div className="column-right">Contenido de la ley</div>
+          <div className="column-right">
+            {showContent ? (
+              <div>
+                <strong>Articulo 1</strong>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                  turpis nisi, ullamcorper id enim id, consequat euismod mauris.
+                  Pellentesque eget lacinia erat. In hac habitasse platea
+                  dictumst. Phasellus consectetur a nulla vitae lobortis.
+                  Vivamus vestibulum ultrices augue vel feugiat. In venenatis
+                  purus eget tellus mattis, eget viverra nisi aliquam. Donec et
+                  lacus ante. Phasellus hendrerit fringilla erat.
+                </p>
+                <p>
+                  <strong>REFERENCIAS</strong>
+                  <ul>
+                    <li>
+                      <a href="#" style={{ color: "#0000ff" }}>
+                        Link 1
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" style={{ color: "#0000ff" }}>
+                        Link 2
+                      </a>
+                    </li>
+                  </ul>
+                </p>
+              </div>
+            ) : (
+              "Contenido de La Ley"
+            )}
+          </div>
         </div>
       </main>
     </LayoutStyles>

@@ -2,41 +2,132 @@ import React from "react";
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 
+const isContent = false;
+const showContent = () => {
+  alert("Works");
+};
+
 /*
 const nodes = [
   {
-    value: "Leyes",
-    label: "Leyes",
+    value: "Ley 1",
+    label: "Ley 1",
     children: [
       {
-        value: "Employee Evaluations.zip",
-        label: "Employee Evaluations.zip",
+        value: "1",
+        label: "Capitulo 1",
         icon: <i className="far fa-file-archive icon-color" />,
+        children: [
+          {
+            value: "A1",
+            label: (
+              <a href="#" onClick={() => showContent()}>
+                Articulo 1
+              </a>
+            ),
+            icon: <i className="far fa-file-archive icon-color" />,
+          },
+          {
+            value: "A2",
+            label: "Articulo 2",
+            icon: <i className="far fa-file-pdf icon-color" />,
+          },
+          {
+            value: "A3",
+            label: "Articulo 3",
+            icon: <i className="far fa-file-alt icon-color" />,
+          },
+        ],
       },
       {
-        value: "Expense Report.pdf",
-        label: "Expense Report.pdf",
+        value: "2",
+        label: "Capitulo 2",
         icon: <i className="far fa-file-pdf icon-color" />,
+        children: [
+          {
+            value: "A4",
+            label: (
+              <a href="#" onClick={() => showContent()}>
+                Articulo 1
+              </a>
+            ),
+            icon: <i className="far fa-file-archive icon-color" />,
+          },
+          {
+            value: "A5",
+            label: "Articulo 2",
+            icon: <i className="far fa-file-pdf icon-color" />,
+          },
+          {
+            value: "A6",
+            label: "Articulo 3",
+            icon: <i className="far fa-file-alt icon-color" />,
+          },
+        ],
       },
       {
-        value: "notes.txt",
-        label: "notes.txt",
+        value: "3",
+        label: "Transitorio 1",
         icon: <i className="far fa-file-alt icon-color" />,
+        children: [
+          {
+            value: "N1",
+            label: "Numeral 1",
+            icon: <i className="far fa-file-archive icon-color" />,
+          },
+          {
+            value: "N2",
+            label: "Numeral 2",
+            icon: <i className="far fa-file-pdf icon-color" />,
+          },
+        ],
       },
     ],
   },
   {
-    value: "Photos",
-    label: "Photos",
+    value: "Ley 2",
+    label: "Ley 2",
     children: [
       {
-        value: "nyan-cat.gif",
-        label: "nyan-cat.gif",
+        value: "4",
+        label: "Capitulo 1",
         icon: <i className="far fa-file-image icon-color" />,
       },
       {
-        value: "SpaceX Falcon9 liftoff.jpg",
-        label: "SpaceX Falcon9 liftoff.jpg",
+        value: "5",
+        label: "Capitulo 2",
+        icon: <i className="far fa-file-image icon-color" />,
+      },
+    ],
+  },
+  {
+    value: "Ley 3",
+    label: "Ley 3",
+    children: [
+      {
+        value: "6",
+        label: "Capitulo 1",
+        icon: <i className="far fa-file-image icon-color" />,
+      },
+      {
+        value: "7",
+        label: "Capitulo 2",
+        icon: <i className="far fa-file-image icon-color" />,
+      },
+    ],
+  },
+  {
+    value: "Ley 4",
+    label: "Ley 4",
+    children: [
+      {
+        value: "8",
+        label: "Capitulo 1",
+        icon: <i className="far fa-file-image icon-color" />,
+      },
+      {
+        value: "9",
+        label: "Capitulo 2",
         icon: <i className="far fa-file-image icon-color" />,
       },
     ],
@@ -49,6 +140,8 @@ class TreeComponent extends React.Component {
     checked: [],
     expanded: ["Leyes"],
     treeData: [],
+    nodes: [],
+    setShowContent: null,
   };
 
   constructor(props) {
@@ -57,6 +150,132 @@ class TreeComponent extends React.Component {
     this.onCheck = this.onCheck.bind(this);
     this.onExpand = this.onExpand.bind(this);
     this.state.treeData = props.nodes;
+    this.state.nodes = [
+      {
+        value: "Ley 1",
+        label: "Ley 1",
+        children: [
+          {
+            value: "1",
+            label: "Capitulo 1",
+            icon: <i className="far fa-file-archive icon-color" />,
+            children: [
+              {
+                value: "A1",
+                label: (
+                  <a href="#" onClick={() => props.setShowContent(true)}>
+                    Articulo 1
+                  </a>
+                ),
+                icon: <i className="far fa-file-archive icon-color" />,
+              },
+              {
+                value: "A2",
+                label: "Articulo 2",
+                icon: <i className="far fa-file-pdf icon-color" />,
+              },
+              {
+                value: "A3",
+                label: "Articulo 3",
+                icon: <i className="far fa-file-alt icon-color" />,
+              },
+            ],
+          },
+          {
+            value: "2",
+            label: "Capitulo 2",
+            icon: <i className="far fa-file-pdf icon-color" />,
+            children: [
+              {
+                value: "A4",
+                label: (
+                  <a href="#" onClick={() => props.setShowContent(true)}>
+                    Articulo 1
+                  </a>
+                ),
+                icon: <i className="far fa-file-archive icon-color" />,
+              },
+              {
+                value: "A5",
+                label: "Articulo 2",
+                icon: <i className="far fa-file-pdf icon-color" />,
+              },
+              {
+                value: "A6",
+                label: "Articulo 3",
+                icon: <i className="far fa-file-alt icon-color" />,
+              },
+            ],
+          },
+          {
+            value: "3",
+            label: "Transitorio 1",
+            icon: <i className="far fa-file-alt icon-color" />,
+            children: [
+              {
+                value: "N1",
+                label: "Numeral 1",
+                icon: <i className="far fa-file-archive icon-color" />,
+              },
+              {
+                value: "N2",
+                label: "Numeral 2",
+                icon: <i className="far fa-file-pdf icon-color" />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        value: "Ley 2",
+        label: "Ley 2",
+        children: [
+          {
+            value: "4",
+            label: "Capitulo 1",
+            icon: <i className="far fa-file-image icon-color" />,
+          },
+          {
+            value: "5",
+            label: "Capitulo 2",
+            icon: <i className="far fa-file-image icon-color" />,
+          },
+        ],
+      },
+      {
+        value: "Ley 3",
+        label: "Ley 3",
+        children: [
+          {
+            value: "6",
+            label: "Capitulo 1",
+            icon: <i className="far fa-file-image icon-color" />,
+          },
+          {
+            value: "7",
+            label: "Capitulo 2",
+            icon: <i className="far fa-file-image icon-color" />,
+          },
+        ],
+      },
+      {
+        value: "Ley 4",
+        label: "Ley 4",
+        children: [
+          {
+            value: "8",
+            label: "Capitulo 1",
+            icon: <i className="far fa-file-image icon-color" />,
+          },
+          {
+            value: "9",
+            label: "Capitulo 2",
+            icon: <i className="far fa-file-image icon-color" />,
+          },
+        ],
+      },
+    ];
+    this.state.setShowContent = props.setShowContent;
   }
 
   onCheck(checked) {
@@ -72,7 +291,7 @@ class TreeComponent extends React.Component {
   }
 
   render() {
-    const { checked, expanded, treeData } = this.state;
+    const { checked, expanded, treeData, nodes, setShowContent } = this.state;
 
     return (
       <CheckboxTree
@@ -97,7 +316,7 @@ class TreeComponent extends React.Component {
           leaf: <span className="rct-icon rct-icon-leaf" />,
         }}
         iconsClass="fa5"
-        nodes={treeData}
+        nodes={nodes}
         onCheck={this.onCheck}
         onExpand={this.onExpand}
       />
