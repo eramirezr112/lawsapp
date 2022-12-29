@@ -17,7 +17,8 @@ export default function Laws({ leyNormasTipos }) {
 
   let nodes = [];
   if (isArray) {
-    nodes = nodes;
+    nodes = leyNormasTipos;
+    console.log("HERE!");
     /*
     nodes = [
       {
@@ -236,7 +237,7 @@ export default function Laws({ leyNormasTipos }) {
 }
 
 export const getStaticProps = async () => {
-  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormas}/type/1`);
+  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormas}/type/2`);
 
   return {
     props: {

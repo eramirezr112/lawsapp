@@ -316,7 +316,7 @@ class TreeComponent extends React.Component {
           leaf: <span className="rct-icon rct-icon-leaf" />,
         }}
         iconsClass="fa5"
-        nodes={nodes}
+        nodes={treeData}
         onCheck={this.onCheck}
         onExpand={this.onExpand}
       />
