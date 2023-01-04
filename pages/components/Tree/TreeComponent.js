@@ -2,11 +2,6 @@ import React from "react";
 import CheckboxTree from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 
-const isContent = false;
-const showContent = () => {
-  alert("Works");
-};
-
 /*
 const nodes = [
   {
