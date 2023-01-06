@@ -12,41 +12,63 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          ¡Bienvenido a <a href="#">LawsApp!</a>
-        </h1>
+        <img src="/ANALEGYS-LOGO-leyes.png" width={250} />
 
         <p className={styles.description}>
           Para comenzar la consulta elija alguno de los siguientes módulos:
         </p>
 
         <div className={styles.grid}>
-          <a href="/laws" className={styles.card}>
+          <a
+            href="/laws"
+            className="m-1 p-[24px] text-[#000] bg-[#eaeaea] max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
+            transition duration-500 ease-in-out 
+            hover:bg-[#00A4D3] transform 
+            hover:-translate-y-1 hover:scale-105"
+          >
             <h2>LEYES &rarr;</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>REGLAMENTOS &rarr;</h2>
-            <p>Etiam id magna eget urna luctus venenatis tempus.</p>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
+            href="/laws"
+            className="m-1 p-[24px] text-[#000] bg-[#eaeaea]  max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
+            transition duration-500 ease-in-out 
+            hover:bg-[#00A4D3] transform 
+            hover:-translate-y-1 hover:scale-105"
+          >
+            <h2>REGLAMENTOS &rarr;</h2>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </a>
+
+          <a
+            href="/laws"
+            className="m-1 p-[24px] text-[#000] bg-[#eaeaea]  max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
+            transition duration-500 ease-in-out 
+            hover:bg-[#00A4D3] transform 
+            hover:-translate-y-1 hover:scale-105"
           >
             <h2>DECRETOS &rarr;</h2>
-            <p>Integer vitae lectus quis ex pretium malesuada. .</p>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
           </a>
 
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
+            href="/laws"
+            className="m-1 p-[24px] text-[#000] bg-[#eaeaea]  max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
+            transition duration-500 ease-in-out 
+            hover:bg-[#00A4D3] transform 
+            hover:-translate-y-1 hover:scale-105"
           >
             <h2>ACUERDOS &rarr;</h2>
-            <p>Pellentesque interdum nec lectus vitae lobortis.</p>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
           </a>
         </div>
       </main>

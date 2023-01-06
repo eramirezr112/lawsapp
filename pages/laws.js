@@ -6,13 +6,63 @@ import { SiteAPI } from "../config";
 
 import LawsPage from "./components/LawsPage";
 
-export default function Laws({ leyNormasTipos }) {
-  console.log(leyNormasTipos);
+export default function Laws({ leyNormasTipos, api }) {
+  //console.log(leyNormasTipos);
   const [treeData, setTreeData] = useState(null);
   const isArray = Array.isArray(leyNormasTipos);
 
+  const getChildrenTree = (children) => {
+    const childrenTree = children?.map((child, i) => {
+      const { value, label, children } = child;
+      let childChildren = [];
+      childChildren = getChildrenTree(children);
+      return {
+        value: value,
+        label: (
+          <a
+            href="#"
+            onClick={() => {
+              testCall(value);
+            }}
+          >
+            {label}
+          </a>
+        ),
+        children: childChildren,
+      };
+    });
+    return childrenTree;
+  };
+
+  const testCall = async (id) => {
+    const children = await axios.get(
+      `${process.env.APP_PUBLIC_API}/leyNormas/children/2/1`
+    );
+    console.log(children);
+  };
+
   useEffect(() => {
-    setTreeData(leyNormasTipos);
+    const myNodes = leyNormasTipos.map((node, i) => {
+      const { value, label, children } = node;
+      let parentChildren = getChildrenTree(children);
+      return {
+        value: value,
+        label: (
+          <a
+            href="#"
+            onClick={() => {
+              testCall(value);
+            }}
+          >
+            {label}
+          </a>
+        ),
+        children: parentChildren,
+      };
+    });
+    console.log(myNodes);
+
+    setTreeData(myNodes);
   }, []);
 
   /*
@@ -76,7 +126,7 @@ export default function Laws({ leyNormasTipos }) {
 }
 
 export const getStaticProps = async () => {
-  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormas}/type/2`);
+  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormas}/type/1`);
 
   return {
     props: {
