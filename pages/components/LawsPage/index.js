@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import TreeComponent from "../Tree/TreeComponent";
 import { LawsPageStyles } from "./LawsPageStyles";
 
-const Law = ({ nodes }) => {
+const LawsPage = ({ nodes, getChildrenNode }) => {
   const [showContent, setShowContent] = useState(false);
 
   return (
     <LawsPageStyles>
       <div className="column-left">
-        <TreeComponent nodes={nodes} setShowContent={setShowContent} />
+        <TreeComponent
+          nodes={nodes}
+          action={getChildrenNode}
+          setShowContent={setShowContent}
+        />
       </div>
       <div className="column-right">
         {showContent ? (
@@ -47,4 +51,4 @@ const Law = ({ nodes }) => {
   );
 };
 
-export default Law;
+export default LawsPage;
