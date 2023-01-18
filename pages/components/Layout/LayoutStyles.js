@@ -38,6 +38,13 @@ export const LayoutStyles = styled.div`
       background: #f5f5f5;
       padding: 1rem;
       overflow: auto;
+      position: relative;
+    }
+
+    .loading-image {
+      position: absolute;
+      right: 10px;
+      top: 5px;
     }
 
     .column-right {
