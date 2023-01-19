@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import Lodash from "lodash";
 import Head from "next/head";
 
@@ -6,6 +7,7 @@ import axios from "axios";
 import { SiteAPI } from "../config";
 
 import LawsPage from "./components/LawsPage";
+import { getPathByName } from "../data/main-menu-app.js";
 
 export default function Laws({ leyNormasTipos }) {
   const [treeData, setTreeData] = useState(leyNormasTipos);
@@ -159,7 +161,8 @@ export default function Laws({ leyNormasTipos }) {
 }
 
 export const getStaticProps = async () => {
-  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormas}/type/1`);
+  const typeId = getPathByName("LEYES").codId;
+  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormas}/type/${typeId}`);
 
   return {
     props: {
