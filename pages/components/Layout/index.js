@@ -1,7 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LayoutStyles } from "./LayoutStyles";
 
+import axios from "axios";
+import { getPathById } from "../../../data/main-menu-app.js";
+
 const Layout = ({ children }) => {
+  const [globalMenu, setGlobalMenu] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await axios.get(
+        `${process.env.APP_PUBLIC_API}/leyNormasTipos`
+      );
+      setGlobalMenu(result.data);
+    };
+    getData();
+  }, []);
+
+  const renderGlobalMenu = () => {
+    const globalMenuOptions = globalMenu.map((option, index) => {
+      return (
+        <li>
+          <a key={index} href={getPathById(option.COD_TIPO).path}>
+            {option.DES_TIPO}
+          </a>
+        </li>
+      );
+    });
+
+    return <ul>{globalMenuOptions}</ul>;
+  };
+
   return (
     <LayoutStyles>
       <header tabIndex="0"></header>
@@ -13,20 +42,7 @@ const Layout = ({ children }) => {
           <span className="icon-bar"></span>
         </div>
         <div id="nav-content" tabIndex="0">
-          <ul>
-            <li>
-              <a href="#0">Leyes</a>
-            </li>
-            <li>
-              <a href="#0">Reglamentos</a>
-            </li>
-            <li>
-              <a href="#0">Decretos</a>
-            </li>
-            <li>
-              <a href="#0">Acuerdos</a>
-            </li>
-          </ul>
+          {renderGlobalMenu()}
         </div>
       </div>
       <main>

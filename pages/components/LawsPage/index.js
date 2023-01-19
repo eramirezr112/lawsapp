@@ -1,28 +1,40 @@
 import React, { useState, useEffect } from "react";
 import TreeComponent from "../Tree/TreeComponent";
 import { LawsPageStyles } from "./LawsPageStyles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
-const Law = ({ nodes }) => {
+const LawsPage = ({
+  nodes,
+  getChildrenNode,
+  isLoading,
+  getContentByNormaAndDetalle,
+  content,
+}) => {
   const [showContent, setShowContent] = useState(false);
 
   return (
     <LawsPageStyles>
       <div className="column-left">
-        <TreeComponent nodes={nodes} setShowContent={setShowContent} />
+        <div className="loading-image">
+          {isLoading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin color="#233f78" />
+          ) : (
+            ""
+          )}
+        </div>
+        <TreeComponent
+          nodes={nodes}
+          action={getChildrenNode}
+          getContentByNormaAndDetalle={getContentByNormaAndDetalle}
+          setShowContent={setShowContent}
+        />
       </div>
       <div className="column-right">
-        {showContent ? (
+        {content ? (
           <div>
-            <strong>Articulo 1</strong>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              turpis nisi, ullamcorper id enim id, consequat euismod mauris.
-              Pellentesque eget lacinia erat. In hac habitasse platea dictumst.
-              Phasellus consectetur a nulla vitae lobortis. Vivamus vestibulum
-              ultrices augue vel feugiat. In venenatis purus eget tellus mattis,
-              eget viverra nisi aliquam. Donec et lacus ante. Phasellus
-              hendrerit fringilla erat.
-            </p>
+            <strong>{content.DES_TITULO}</strong>
+            <p>{content.DES_DESCRIPCION}</p>
             <p>
               <strong>REFERENCIAS</strong>
               <ul>
@@ -47,4 +59,4 @@ const Law = ({ nodes }) => {
   );
 };
 
-export default Law;
+export default LawsPage;

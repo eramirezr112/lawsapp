@@ -1,20 +1,43 @@
-import React, { useState } from "react";
-import CheckboxTree from "react-checkbox-tree";
+import React, { useState, useEffect } from "react";
+import Lodash, { has } from "lodash";
+import CheckboxTree, { expandNodesToLevel } from "react-checkbox-tree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 
-const TreeComponent = ({ nodes }) => {
+const TreeComponent = ({ nodes, action, getContentByNormaAndDetalle }) => {
   const [treeData, setTreeData] = useState(nodes);
   const [checked, setChecked] = useState([]);
   const [expanded, setExpanded] = useState([]);
+
+  useEffect(() => {
+    setTreeData(nodes);
+  }, [nodes]);
 
   const onCheck = (checked) => {
     setChecked(checked);
   };
 
   const onExpand = (expanded, targetNode) => {
-    console.log(targetNode);
-    console.log(expanded);
     setExpanded(expanded);
+    const treeNode = Lodash.find(treeData, {
+      value: targetNode.value,
+      isParentRoot: true,
+    });
+    const isParentRoot = treeNode ? true : false;
+    if (!isParentRoot) {
+      action(targetNode);
+    }
+  };
+
+  const onClick = (targetNode) => {
+    const treeNode = Lodash.find(treeData, {
+      value: targetNode.value,
+      isParentRoot: true,
+    });
+    const isParentRoot = treeNode ? true : false;
+    if (!isParentRoot) {
+      getContentByNormaAndDetalle(targetNode);
+      action(targetNode);
+    }
   };
 
   return (
@@ -44,10 +67,7 @@ const TreeComponent = ({ nodes }) => {
       onCheck={(checked) => onCheck(checked)}
       onExpand={(expanded, targetNode) => onExpand(expanded, targetNode)}
       expandOnClick={true}
-      onClick={(targetNode) => {
-        console.log("TEST!");
-        console.log(targetNode);
-      }}
+      onClick={(targetNode) => onClick(targetNode)}
     />
   );
 };

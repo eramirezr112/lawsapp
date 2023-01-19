@@ -1,8 +1,15 @@
 import Head from "next/head";
+import Lodash from "lodash";
+
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+import axios from "axios";
+import { SiteAPI } from "../config";
+
+import { getPathById } from "../data/main-menu-app.js";
+
+export default function Home({ leyNormasTipos }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,57 +26,23 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a
-            href="/laws"
-            className="m-1 p-[24px] text-[#000] bg-[#eaeaea] max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
-            transition duration-500 ease-in-out 
-            hover:bg-[#00A4D3] transform 
-            hover:-translate-y-1 hover:scale-105"
-          >
-            <h2>LEYES &rarr;</h2>
-            <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </a>
-
-          <a
-            href="/laws"
-            className="m-1 p-[24px] text-[#000] bg-[#eaeaea]  max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
-            transition duration-500 ease-in-out 
-            hover:bg-[#00A4D3] transform 
-            hover:-translate-y-1 hover:scale-105"
-          >
-            <h2>REGLAMENTOS &rarr;</h2>
-            <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </a>
-
-          <a
-            href="/laws"
-            className="m-1 p-[24px] text-[#000] bg-[#eaeaea]  max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
-            transition duration-500 ease-in-out 
-            hover:bg-[#00A4D3] transform 
-            hover:-translate-y-1 hover:scale-105"
-          >
-            <h2>DECRETOS &rarr;</h2>
-            <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </a>
-
-          <a
-            href="/laws"
-            className="m-1 p-[24px] text-[#000] bg-[#eaeaea]  max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
-            transition duration-500 ease-in-out 
-            hover:bg-[#00A4D3] transform 
-            hover:-translate-y-1 hover:scale-105"
-          >
-            <h2>ACUERDOS &rarr;</h2>
-            <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </a>
+          {leyNormasTipos.map((option, index) => {
+            return (
+              <a
+                key={index}
+                href={getPathById(option.COD_TIPO).path}
+                className="m-1 p-[24px] text-[#000] bg-[#eaeaea] max-w-[300px] text-[20px] border-[#eaeaea] border-solid border-[1px] hover:text-[#fff] 
+          transition duration-500 ease-in-out 
+          hover:bg-[#00A4D3] transform 
+          hover:-translate-y-1 hover:scale-105"
+              >
+                <h2>{option.DES_TIPO} &rarr;</h2>
+                <p className="mt-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </a>
+            );
+          })}
         </div>
       </main>
 
@@ -81,3 +54,14 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const leyNormasTipos = await axios.get(`${SiteAPI.leyNormasTipos}`);
+
+  return {
+    props: {
+      leyNormasTipos: leyNormasTipos.data,
+    },
+    revalidate: 1,
+  };
+};
