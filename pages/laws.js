@@ -59,11 +59,15 @@ export default function Laws({ leyNormasTipos }) {
     const codNorma = nodeParts[0];
     const codDetalle = nodeParts[1];
 
+    const title = await axios.get(
+      `${process.env.APP_PUBLIC_API}/leyNormas/${codNorma}`
+    );
+
     const result = await axios.get(
       `${process.env.APP_PUBLIC_API}/leyNormas/content/${codNorma}/${codDetalle}`
     );
-    console.log(result.data);
-    setContent(result.data);
+
+    setContent({ title: title.data.DES_TITULO, content: result.data });
   };
 
   /*

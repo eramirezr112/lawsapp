@@ -65,6 +65,11 @@ export const LayoutStyles = styled.div`
     margin: 20px 0;
   }
 
+  main .references-box p {
+    font-weight: 200;
+    margin: 0;
+  }
+
   main small {
     font-weight: 300;
     color: #888;
@@ -170,7 +175,7 @@ export const LayoutStyles = styled.div`
   }
 
   #nav-content li a:hover {
-    color: #bf7497;
+    color: #00a4d3;
   }
 
   #nav-content li:not(.small) + .small {

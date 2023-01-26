@@ -164,7 +164,7 @@ export const LawsPageStyles = styled.div`
   }
 
   #nav-content li a:hover {
-    color: #bf7497;
+    color: #00a4d3;
   }
 
   #nav-content li:not(.small) + .small {

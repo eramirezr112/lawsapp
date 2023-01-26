@@ -37,9 +37,7 @@ export default function Home({ leyNormasTipos }) {
           hover:-translate-y-1 hover:scale-105"
               >
                 <h2>{option.DES_TIPO} &rarr;</h2>
-                <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
+                <p className="mt-4">{option.DESCRIPCION}</p>
               </a>
             );
           })}
